@@ -1,0 +1,42 @@
+/* Home */
+.main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.title {
+  font-family: 'Calligraphy', serif;
+  font-size: 6rem;
+  color: #000;
+  opacity: 0;
+  animation: fadeIn 2.5s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.explore-btn {
+  background-color: #a8b8b0;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-family: 'Noto Serif', serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #2b2b2b;
+  transition: background-color 0.3s ease;
+  opacity: 0;
+  animation: fadeIn 2.5s ease forwards;
+  animation-delay: 1s;
+}
+
+.explore-btn:hover {
+  background-color: #91a49c;
+}

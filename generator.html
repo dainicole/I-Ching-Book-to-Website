@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>64 Hexagrams</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="generator.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="sidebar">
+  <div class="nav-header">
+    <img src="pictures/coin.png" alt="I Ching Coin" class="coin-icon">
+  </div>
+  <ul class="nav-links">
+    <li class="nav-item"><a href="index.html">Home</a></li>
+    <li class="nav-item"><a href="hexagrams.html">64 Hexagrams</a></li>
+    <li class="nav-item"><a href="generator.html">Generator</a></li>
+  </ul>
+</nav>
+
+<!-- Main Page -->
+<main class="main-content">
+  <section class="section generator-page">
+    <h2>Generate Your Hexagram</h2>
+    <p>Click below to cast your hexagram using the traditional three-coin method.</p>
+    <button type="button" id="generate-btn" class="generate-btn">Generate</button>
+
+    <div id="hexagram-result" class="hexagram-display">
+      <div id="generated-hexagram" class="lines"></div>
+      <div id="hexagram-info" class="info">
+        <h3 id="hexagram-name"></h3>
+        <p id="hexagram-title"></p>
+        <p id="hexagram-description"></p>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

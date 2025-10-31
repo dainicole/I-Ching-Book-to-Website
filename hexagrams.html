@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>64 Hexagrams Page</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="hexagrams.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="sidebar">
+  <div class="nav-header">
+    <img src="pictures/coin.png" alt="I Ching Coin" class="coin-icon">
+  </div>
+  <ul class="nav-links">
+    <li class="nav-item"><a href="index.html">Home</a></li>
+    <li class="nav-item"><a href="hexagrams.html">64 Hexagrams</a></li>
+    <li class="nav-item"><a href="generator.html">Generator</a></li>
+  </ul>
+</nav>
+
+<!-- Main Page -->
+<div class="main-content">
+  <header class="hero">
+    <h1 class="title">The 64 Hexagrams</h1>
+  </header>
+
+  <section id="hexagram-list" class="section">
+    <div class="hexagram-grid" id="hexagram-grid">
+      <!-- Populated by script.js -->
+    </div>
+  </section>
+</div>
+<!-- Hexagram Gallery Card -->
+<div id="hexagramModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3 id="modalTitle"></h3>
+    <p class="hexagram-subtitle" id="modalMeaning"></p>
+    <img id="modalImage" class="hexagram-image" src="" alt="">
+    <p class="hexagram-description" id="modalDescription"></p>
+    <div class="modal-nav">
+      <button type="button" id="prev">← Previous</button>
+      <button type="button" id="next">Next →</button>
+    </div>
+  </div>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
