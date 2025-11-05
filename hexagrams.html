@@ -33,21 +33,24 @@
     </div>
   </section>
 </div>
-<!-- Hexagram Gallery Card -->
+
+<!-- Hexagram Gallery Modal -->
 <div id="hexagramModal" class="modal" style="display: none;">
   <div class="modal-content">
     <span class="close">&times;</span>
     <h3 id="modalTitle"></h3>
     <p class="hexagram-subtitle" id="modalMeaning"></p>
-    <img id="modalImage" class="hexagram-image" src="" alt="">
-    <p class="hexagram-description" id="modalDescription"></p>
+    <!-- Scrollable content wrapper -->
+    <div class="modal-scroll-content">
+      <img id="modalImage" class="hexagram-image" src="" alt="">
+      <p class="hexagram-description" id="modalDescription"></p>
+    </div>
     <div class="modal-nav">
       <button type="button" id="prev">← Previous</button>
       <button type="button" id="next">Next →</button>
     </div>
   </div>
 </div>
-
 
 <script src="script.js"></script>
 </body>

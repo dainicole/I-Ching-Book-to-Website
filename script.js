@@ -1,3 +1,53 @@
+// Mobile Navigation Toggle
+const sidebar = document.querySelector('.sidebar');
+const coinIcon = document.querySelector('.coin-icon');
+
+// Function to check if device is mobile
+function isMobile() {
+  return window.innerWidth <= 768;
+}
+
+// Toggle sidebar on mobile
+if (coinIcon && sidebar) {
+  coinIcon.addEventListener('click', (e) => {
+    if (isMobile()) {
+      e.stopPropagation();
+      sidebar.classList.toggle('active');
+    }
+  });
+  
+  // Close sidebar when clicking outside on mobile
+  document.addEventListener('click', (e) => {
+    if (isMobile() && sidebar.classList.contains('active')) {
+      if (!sidebar.contains(e.target)) {
+        sidebar.classList.remove('active');
+      }
+    }
+  });
+  
+  // Close sidebar when clicking a nav link on mobile
+  const navLinks = document.querySelectorAll('.nav-item a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (isMobile()) {
+        sidebar.classList.remove('active');
+      }
+    });
+  });
+}
+
+// Handle window resize
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    // Remove active class when switching to desktop
+    if (!isMobile() && sidebar) {
+      sidebar.classList.remove('active');
+    }
+  }, 250);
+});
+
 // 64 Hexagrams Data
 const hexagrams = [
 { number: 1, name: "Qián (乾)", title: "Heaven above Heaven below. Yielding.", description: "The universe is united in power. So too the wise person execute his actions with power and creativity. Exceptional progress comes by correct persistence." },
@@ -82,9 +132,18 @@ if (hexGrid) {
   hexagrams.forEach((h, i) => {
     const card = document.createElement("div");
     card.classList.add("hexagram-card");
+    
+    // Format number with leading zero (01, 02, etc.)
+    const hexNumber = h.number.toString().padStart(2, '0');
+    
     card.innerHTML = `
-      <h3>${h.number}. ${h.name}</h3>
-      <p>${h.title}</p>
+      <img src="pictures/hexagram_art/Card Back Design.jpg" 
+           alt="Hexagram ${h.number}" 
+           class="hexagram-card-image">
+      <div class="hexagram-card-content">
+        <h3>${h.number}. ${h.name}</h3>
+        <p>${h.title}</p>
+      </div>
     `;
     hexGrid.appendChild(card);
 
@@ -114,13 +173,16 @@ function openModal(index) {
     modalDescription.textContent = h.description || "No description available.";
   }
   
-  // Add image
+  // Add hexagram image with correct path
   if (modalImage) {
-    modalImage.src = `pictures/hexagram${h.number}.png`;
+    const hexNumber = h.number.toString().padStart(2, '0');
+    modalImage.src = `pictures/hexagram_art/I Ching Hexagram ${hexNumber}.jpg`;
     modalImage.alt = h.name;
-    // Error when image doesn't exist
+    
+    // Handle image error
     modalImage.onerror = function() {
       this.style.display = 'none';
+      console.log(`Image not found: I Ching Hexagram ${hexNumber}.jpg`);
     };
     modalImage.onload = function() {
       this.style.display = 'block';
@@ -130,7 +192,6 @@ function openModal(index) {
   modal.style.display = "flex";
   currentIndex = index;
 }
-
 function closeModal() {
   if (modal) modal.style.display = "none";
 }
@@ -421,7 +482,7 @@ function completeHexagram() {
       const changingLines = lines
         .map((l, i) => l.changing ? i + 1 : null)
         .filter(n => n !== null);
-      description += `\n\n This hexagram contains changing lines (${changingLines.join(', ')}), indicating the situation is in flux and transformation is imminent.`;
+      description += `\n\nThis hexagram contains changing lines (${changingLines.join(', ')}), indicating the situation is in flux and transformation is imminent.`;
     }
     
     descEl.textContent = description;
