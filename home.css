@@ -79,7 +79,6 @@
   transform: translateY(0);
 }
 
-/* Question Section - Image on Right (Smaller) */
 #question {
   display: grid;
   grid-template-columns: 1fr 220px;
@@ -114,7 +113,6 @@
   display: none;
 }
 
-/* History Section - Image on Left */
 #history {
   display: grid;
   grid-template-columns: 300px 1fr;
@@ -149,7 +147,6 @@
   display: none;
 }
 
-/* Casting Section - Image centered */
 #casting {
   display: flex;
   flex-direction: column;
@@ -181,7 +178,6 @@
   margin: 0 auto;
 }
 
-/* Building Trigram Section - Image on Right (Smaller) */
 #building-trigram {
   display: grid;
   grid-template-columns: 1fr 220px;
@@ -216,7 +212,6 @@
   display: none;
 }
 
-/* Building Hexagram Section - Image on Left (Smaller) */
 #building-hexagram {
   display: grid;
   grid-template-columns: 220px 1fr;
@@ -295,7 +290,7 @@
   }
 }
 
-/* Mobile responsiveness - Move images below text and center content */
+/* Mobile responsiveness */
 @media (max-width: 768px) {
   .main {
     padding: 2rem 1rem;
