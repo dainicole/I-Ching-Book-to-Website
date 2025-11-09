@@ -137,17 +137,39 @@ if (hexGrid) {
     const hexNumber = h.number.toString().padStart(2, '0');
     
     card.innerHTML = `
-      <img src="pictures/hexagram_art/Card Back Design.jpg" 
-           alt="Hexagram ${h.number}" 
-           class="hexagram-card-image">
-      <div class="hexagram-card-content">
-        <h3>${h.number}. ${h.name}</h3>
-        <p>${h.title}</p>
+      <div class="hexagram-card-inner">
+        <div class="hexagram-card-front">
+          <img src="pictures/hexagram_art/Card Back Design.jpg" 
+               alt="Hexagram ${h.number}" 
+               class="hexagram-card-image">
+          <div class="hexagram-card-content">
+            <h3>${h.number}. ${h.name}</h3>
+            <p>${h.title}</p>
+          </div>
+        </div>
+        <div class="hexagram-card-back">
+          <img src="pictures/hexagram_art/I Ching Hexagram ${hexNumber}.jpg" 
+               alt="${h.name}" 
+               class="hexagram-card-image">
+          <div class="hexagram-card-content">
+            <h3>${h.number}. ${h.name}</h3>
+            <p>${h.title}</p>
+          </div>
+        </div>
       </div>
     `;
     hexGrid.appendChild(card);
 
-    card.addEventListener("click", () => openModal(i));
+    // Flip on click, then open modal
+    card.addEventListener("click", () => {
+      // Flip the card first
+      card.classList.add("flipped");
+      
+      // After flip animation completes, open modal with transition
+      setTimeout(() => {
+        openModal(i, card);
+      }, 800); // Wait for full flip to complete
+    });
   });
 }
 
@@ -162,10 +184,11 @@ const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
 let currentIndex = 0;
 
-function openModal(index) {
+function openModal(index, cardElement) {
   const h = hexagrams[index];
   if (!modal || !modalTitle || !modalMeaning) return;
 
+  // Set content before showing
   modalTitle.textContent = `${h.number}. ${h.name}`;
   modalMeaning.textContent = h.title;
   
@@ -189,21 +212,75 @@ function openModal(index) {
     };
   }
   
+  // Get card position for animation origin
+  if (cardElement) {
+    const rect = cardElement.getBoundingClientRect();
+    const modalContent = modal.querySelector('.modal-content');
+    
+    // Set initial position and size to match card
+    modalContent.style.position = 'absolute';
+    modalContent.style.left = `${rect.left}px`;
+    modalContent.style.top = `${rect.top}px`;
+    modalContent.style.width = `${rect.width}px`;
+    modalContent.style.height = `${rect.height}px`;
+    modalContent.style.maxWidth = `${rect.width}px`;
+    modalContent.style.maxHeight = `${rect.height}px`;
+  }
+  
+  // Show modal (invisible initially)
   modal.style.display = "flex";
   currentIndex = index;
+  
+  // Trigger animation on next frame
+  requestAnimationFrame(() => {
+    modal.classList.add('active');
+    const modalContent = modal.querySelector('.modal-content');
+    
+    // Animate to final size and position
+    requestAnimationFrame(() => {
+      modalContent.style.position = 'relative';
+      modalContent.style.left = 'auto';
+      modalContent.style.top = 'auto';
+      modalContent.style.width = '95%';
+      modalContent.style.height = 'auto';
+      modalContent.style.maxWidth = '900px';
+      modalContent.style.maxHeight = '90vh';
+    });
+  });
 }
+
 function closeModal() {
-  if (modal) modal.style.display = "none";
+  if (modal) {
+    modal.classList.remove('active');
+    
+    // Wait for animation to complete before hiding
+    setTimeout(() => {
+      modal.style.display = "none";
+      
+      // Reset all flipped cards
+      document.querySelectorAll('.hexagram-card.flipped').forEach(card => {
+        card.classList.remove('flipped');
+      });
+    }, 600);
+  }
 }
 
 function nextHex() {
   currentIndex = (currentIndex + 1) % hexagrams.length;
-  openModal(currentIndex);
+  // Close modal with animation
+  modal.classList.remove('active');
+  setTimeout(() => {
+    openModal(currentIndex);
+  }, 300);
 }
 
 function prevHex() {
   currentIndex = (currentIndex - 1 + hexagrams.length) % hexagrams.length;
-  openModal(currentIndex);
+  // Close modal with animation
+  modal.classList.remove('active');
+  setTimeout(() => {
+    openModal(currentIndex);
+  }, 300);
 }
 
 if (closeBtn) closeBtn.addEventListener("click", closeModal);

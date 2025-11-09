@@ -90,6 +90,32 @@
   white-space: pre-line;
 }
 
+/* Information sections */
+.info-section {
+  width: 80%;
+  margin: 3rem auto;
+  text-align: left;
+}
+
+.info-section h2 {
+  font-family: 'Calligraphy', serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #3a2b1f;
+}
+
+.info-section p {
+  line-height: 1.8;
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+  color: #3a2b1f;
+}
+
+.info-section p:last-child {
+  margin-bottom: 0;
+}
+
 /* Coin animations */
 .coin-toss-animation {
   position: fixed;
@@ -129,5 +155,60 @@
   100% {
     transform: translate(-50%, -50%) rotateY(1440deg) scale(0.8);
     opacity: 0;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .info-section {
+    width: 90%;
+    margin: 2rem auto;
+  }
+  
+  .info-section h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+  
+  .info-section p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .hexagram-display .info {
+    max-width: 90%;
+  }
+  
+  .hexagram-display .info h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .info-section {
+    width: 95%;
+    margin: 1.5rem auto;
+  }
+  
+  .info-section h2 {
+    font-size: 1.4rem;
+  }
+  
+  .info-section p {
+    font-size: 0.9rem;
+  }
+  
+  .hexagram-display .line {
+    width: 120px;
+    height: 12px;
+  }
+  
+  .hexagram-display .info h3 {
+    font-size: 1.3rem;
+  }
+  
+  .generate-btn {
+    font-size: 1rem;
+    padding: 0.9rem 1.8rem;
   }
 }
