@@ -84,7 +84,7 @@
   grid-template-columns: 1fr 220px;
   gap: 2rem;
   align-items: center;
-  padding: 3rem;
+  padding: 1.25rem;
 }
 
 #question h2 {
@@ -118,7 +118,7 @@
   grid-template-columns: 300px 1fr;
   gap: 2rem;
   align-items: center;
-  padding: 3rem;
+  padding: 1.5rem;
 }
 
 #history h2 {
@@ -151,7 +151,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 3rem;
+  padding: 1.5rem;
 }
 
 #casting h2 {
@@ -183,7 +183,7 @@
   grid-template-columns: 1fr 220px;
   gap: 2rem;
   align-items: center;
-  padding: 3rem;
+  padding: 1.5rem;
 }
 
 #building-trigram h2 {
@@ -217,7 +217,7 @@
   grid-template-columns: 220px 1fr;
   gap: 2rem;
   align-items: center;
-  padding: 3rem;
+  padding: 2rem;
 }
 
 #building-hexagram h2 {
@@ -272,17 +272,17 @@
   #question, #building-trigram {
     grid-template-columns: 1fr 200px;
     gap: 1.5rem;
-    padding: 2.5rem 2rem;
+    padding: 1.25rem 1rem;
   }
   
   #history, #building-hexagram {
     grid-template-columns: 250px 1fr;
     gap: 1.5rem;
-    padding: 2.5rem 2rem;
+    padding: 1.25rem 1rem;
   }
   
   #casting {
-    padding: 2.5rem 2rem;
+    padding: 1.25rem 1rem;
   }
   
   #casting .coins {
@@ -318,12 +318,12 @@
   #question, #history, #building-trigram, #building-hexagram {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    padding: 2rem 1.5rem;
+    padding: 1rem 0.75rem;
     justify-items: center;
   }
   
   #casting {
-    padding: 2rem 1.5rem;
+    padding: 1rem 0.75rem;
   }
   
   #question h2,
@@ -386,11 +386,11 @@
   }
   
   #question, #history, #building-trigram, #building-hexagram {
-    padding: 1.5rem 1rem;
+    padding: 1rem 0.5rem;
   }
   
   #casting {
-    padding: 1.5rem 1rem;
+    padding: 1rem 0.5rem;
   }
   
   #question .section-image,
